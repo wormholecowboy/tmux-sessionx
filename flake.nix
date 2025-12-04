@@ -20,22 +20,22 @@
         ...
       }: {
         packages.default = pkgs.tmuxPlugins.mkTmuxPlugin {
-          pluginName = "sessionx";
+          pluginName = "sessionb";
           version = "dev";
 
           src = ./.;
           nativeBuildInputs = [pkgs.makeWrapper];
 
           postPatch = ''
-            substituteInPlace sessionx.tmux \
-              --replace "\$CURRENT_DIR/scripts/sessionx.sh" "$out/share/tmux-plugins/sessionx/scripts/sessionx.sh"
-            substituteInPlace scripts/sessionx.sh \
-              --replace "/tmux-sessionx/scripts/reload_sessions.sh" "$out/share/tmux-plugins/sessionx/scripts/reload_sessions.sh"
+            substituteInPlace sessionb.tmux \
+              --replace "\$CURRENT_DIR/scripts/sessionb.sh" "$out/share/tmux-plugins/sessionb/scripts/sessionb.sh"
+            substituteInPlace scripts/sessionb.sh \
+              --replace "/tmux-sessionb/scripts/reload_sessions.sh" "$out/share/tmux-plugins/sessionb/scripts/reload_sessions.sh"
           '';
 
           postInstall = ''
-            chmod +x $target/scripts/sessionx.sh
-            wrapProgram $target/scripts/sessionx.sh \
+            chmod +x $target/scripts/sessionb.sh
+            wrapProgram $target/scripts/sessionb.sh \
               --prefix PATH : ${with pkgs; lib.makeBinPath [zoxide fzf gnugrep gnused coreutils]}
             chmod +x $target/scripts/reload_sessions.sh
             wrapProgram $target/scripts/reload_sessions.sh \
@@ -44,7 +44,7 @@
 
           meta = with lib; {
   description = "A fuzzy Tmux session manager with deleting, renaming and more!";
-            homepage = "https://github.com/omerxx/tmux-sessionx";
+            homepage = "https://github.com/omerxx/tmux-sessionb";
             platforms = platforms.all;
           };
         };

@@ -124,9 +124,9 @@ handle_input() {
 }
 
 run_plugin() {
-	Z_MODE=$(tmux_option_or_fallback "@sessionx-zoxide-mode" "off")
-	eval $(tmux show-option -gqv @sessionx-_built-args)
-	eval $(tmux show-option -gqv @sessionx-_built-extra-options)
+	Z_MODE=$(tmux_option_or_fallback "@sessionb-zoxide-mode" "off")
+	eval $(tmux show-option -gqv @sessionb-_built-args)
+	eval $(tmux show-option -gqv @sessionb-_built-extra-options)
 	handle_input
 	args+=(--bind "$BACK")
 

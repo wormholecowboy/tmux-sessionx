@@ -4,7 +4,7 @@ is_fzf-marks_enabled() {
   local fzf_marks_mode fzf_marks_file
   fzf_marks_file=$(get_fzf-marks_file)
   if [[ -e "${fzf_marks_file}" ]]; then
-	  fzf_marks_mode=$(tmux_option_or_fallback "@sessionx-fzf-marks-mode" "off")
+	  fzf_marks_mode=$(tmux_option_or_fallback "@sessionb-fzf-marks-mode" "off")
   fi
 
   if [[ "$fzf_marks_mode" != "on" ]]; then
@@ -23,7 +23,7 @@ is_fzf-marks_mark(){
 }
 
 get_fzf-marks_file() {
-  echo "$(tmux_option_or_fallback "@sessionx-fzf-marks-file" "$HOME/.fzf-marks" | sed "s|~|$HOME|")"
+  echo "$(tmux_option_or_fallback "@sessionb-fzf-marks-file" "$HOME/.fzf-marks" | sed "s|~|$HOME|")"
 }
 
 get_fzf-marks_mark() {
@@ -40,7 +40,7 @@ get_fzf-marks_target() {
 
 get_fzf-marks_keybind() {
   local keybind
-  keybind="$(tmux_option_or_fallback "@sessionx-bind-fzf-marks" "ctrl-g")"
+  keybind="$(tmux_option_or_fallback "@sessionb-bind-fzf-marks" "ctrl-g")"
   echo "$keybind"
 }
 

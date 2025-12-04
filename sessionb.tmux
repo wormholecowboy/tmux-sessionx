@@ -16,36 +16,36 @@ tmux_option_or_fallback() {
 }
 
 window_settings() {
-	window_height=$(tmux_option_or_fallback "@sessionx-window-height" "75%")
-	window_width=$(tmux_option_or_fallback "@sessionx-window-width" "75%")
-	layout_mode=$(tmux_option_or_fallback "@sessionx-layout" "default")
-	prompt_icon=$(tmux_option_or_fallback "@sessionx-prompt" " ")
-	pointer_icon=$(tmux_option_or_fallback "@sessionx-pointer" "▶")
+	window_height=$(tmux_option_or_fallback "@sessionb-window-height" "75%")
+	window_width=$(tmux_option_or_fallback "@sessionb-window-width" "75%")
+	layout_mode=$(tmux_option_or_fallback "@sessionb-layout" "default")
+	prompt_icon=$(tmux_option_or_fallback "@sessionb-prompt" " ")
+	pointer_icon=$(tmux_option_or_fallback "@sessionb-pointer" "▶")
 }
 
 handle_binds() {
-	bind_window_mode=$(tmux_option_or_fallback "@sessionx-bind-window-mode" "ctrl-w")
-	bind_configuration_mode=$(tmux_option_or_fallback "@sessionx-bind-configuration-path" "ctrl-x")
-	bind_rename_session=$(tmux_option_or_fallback "@sessionx-bind-rename-session" "ctrl-r")
-	additional_fzf_options=$(tmux_option_or_fallback "@sessionx-additional-options" "--color pointer:9,spinner:92,marker:46")
+	bind_window_mode=$(tmux_option_or_fallback "@sessionb-bind-window-mode" "ctrl-w")
+	bind_configuration_mode=$(tmux_option_or_fallback "@sessionb-bind-configuration-path" "ctrl-x")
+	bind_rename_session=$(tmux_option_or_fallback "@sessionb-bind-rename-session" "ctrl-r")
+	additional_fzf_options=$(tmux_option_or_fallback "@sessionb-additional-options" "--color pointer:9,spinner:92,marker:46")
 
-	bind_back=$(tmux_option_or_fallback "@sessionx-bind-back" "ctrl-b")
-	bind_new_window=$(tmux_option_or_fallback "@sessionx-bind-new-window" "ctrl-e")
-	bind_zo=$(tmux_option_or_fallback "@sessionx-bind-zo-new-window" "ctrl-f")
-	bind_kill_session=$(tmux_option_or_fallback "@sessionx-bind-kill-session" "alt-bspace")
+	bind_back=$(tmux_option_or_fallback "@sessionb-bind-back" "ctrl-b")
+	bind_new_window=$(tmux_option_or_fallback "@sessionb-bind-new-window" "ctrl-e")
+	bind_zo=$(tmux_option_or_fallback "@sessionb-bind-zo-new-window" "ctrl-f")
+	bind_kill_session=$(tmux_option_or_fallback "@sessionb-bind-kill-session" "alt-bspace")
 
-	bind_exit=$(tmux_option_or_fallback "@sessionx-bind-abort" "esc")
-	bind_accept=$(tmux_option_or_fallback "@sessionx-bind-accept" "enter")
-	bind_delete_char=$(tmux_option_or_fallback "@sessionx-bind-delete-char" "bspace")
+	bind_exit=$(tmux_option_or_fallback "@sessionb-bind-abort" "esc")
+	bind_accept=$(tmux_option_or_fallback "@sessionb-bind-accept" "enter")
+	bind_delete_char=$(tmux_option_or_fallback "@sessionb-bind-delete-char" "bspace")
 
-	bind_select_up=$(tmux_option_or_fallback "@sessionx-bind-select-up" "ctrl-n")
-	bind_select_down=$(tmux_option_or_fallback "@sessionx-bind-select-down" "ctrl-p")
+	bind_select_up=$(tmux_option_or_fallback "@sessionb-bind-select-up" "ctrl-n")
+	bind_select_down=$(tmux_option_or_fallback "@sessionb-bind-select-down" "ctrl-p")
 
 }
 
 handle_args() {
-	CONFIGURATION_PATH=$(tmux_option_or_fallback "@sessionx-x-path" "$HOME/.config")
-	FZF_BUILTIN_TMUX=$(tmux_option_or_fallback "@sessionx-fzf-builtin-tmux" "off")
+	CONFIGURATION_PATH=$(tmux_option_or_fallback "@sessionb-x-path" "$HOME/.config")
+	FZF_BUILTIN_TMUX=$(tmux_option_or_fallback "@sessionb-fzf-builtin-tmux" "off")
 
 	CONFIGURATION_MODE="$bind_configuration_mode:reload(find $CONFIGURATION_PATH -mindepth 1 -maxdepth 1 -type d -o -type l)"
 	WINDOWS_MODE="$bind_window_mode:reload(tmux list-windows -a -F '#{session_name}:#{window_name}')"
@@ -99,11 +99,11 @@ handle_args() {
 		--scrollbar '▌▐'
 	)
 
-	legacy=$(tmux_option_or_fallback "@sessionx-legacy-fzf-support" "off")
+	legacy=$(tmux_option_or_fallback "@sessionb-legacy-fzf-support" "off")
 	if [[ "${legacy}" == "off" ]]; then
 		args+=(--border-label "Current session: \"$CURRENT\" ")
 	fi
-	auto_accept=$(tmux_option_or_fallback "@sessionx-auto-accept" "off")
+	auto_accept=$(tmux_option_or_fallback "@sessionb-auto-accept" "off")
 	if [[ "${auto_accept}" == "on" ]]; then
 		args+=(--bind one:accept)
 	fi
@@ -121,12 +121,12 @@ handle_args() {
 handle_extra_options() {
 	declare -A extra_options
 	extra_options["bind-back"]=$bind_back
-	extra_options["filtered-sessions"]=$(tmux_option_or_fallback "@sessionx-filtered-sessions" "")
-	extra_options["window-mode"]=$(tmux_option_or_fallback "@sessionx-window-mode" "off")
-	extra_options["filter-current"]=$(tmux_option_or_fallback "@sessionx-filter-current" "true")
-	extra_options["custom-paths"]=$(tmux_option_or_fallback "@sessionx-custom-paths" "")
-	extra_options["custom-paths-subdirectories"]=$(tmux_option_or_fallback "@sessionx-custom-paths-subdirectories" "false")
-	tmux set-option -g @sessionx-_built-extra-options "$(declare -p extra_options)"
+	extra_options["filtered-sessions"]=$(tmux_option_or_fallback "@sessionb-filtered-sessions" "")
+	extra_options["window-mode"]=$(tmux_option_or_fallback "@sessionb-window-mode" "off")
+	extra_options["filter-current"]=$(tmux_option_or_fallback "@sessionb-filter-current" "true")
+	extra_options["custom-paths"]=$(tmux_option_or_fallback "@sessionb-custom-paths" "")
+	extra_options["custom-paths-subdirectories"]=$(tmux_option_or_fallback "@sessionb-custom-paths-subdirectories" "false")
+	tmux set-option -g @sessionb-_built-extra-options "$(declare -p extra_options)"
 }
 
 window_settings
@@ -134,10 +134,10 @@ handle_binds
 handle_args
 handle_extra_options
 
-tmux set-option -g @sessionx-_built-args "$(declare -p args)"
+tmux set-option -g @sessionb-_built-args "$(declare -p args)"
 
-if [ `tmux_option_or_fallback "@sessionx-prefix" "on"` = "on"  ]; then
-	tmux bind-key "$(tmux_option_or_fallback "@sessionx-bind" "O")" run-shell "$CURRENT_DIR/scripts/sessionx.sh"
+if [ `tmux_option_or_fallback "@sessionb-prefix" "on"` = "on"  ]; then
+	tmux bind-key "$(tmux_option_or_fallback "@sessionb-bind" "O")" run-shell "$CURRENT_DIR/scripts/sessionb.sh"
 else
-	tmux bind-key -n "$(tmux_option_or_fallback "@sessionx-bind" "O")" run-shell "$CURRENT_DIR/scripts/sessionx.sh"
+	tmux bind-key -n "$(tmux_option_or_fallback "@sessionb-bind" "O")" run-shell "$CURRENT_DIR/scripts/sessionb.sh"
 fi

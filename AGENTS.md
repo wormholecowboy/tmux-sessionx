@@ -1,13 +1,13 @@
 # AGENTS.md
 
 ## Project Overview
-tmux-sessionx is a tmux plugin written in Bash for fuzzy session management with fzf.
+sessionb is a tmux plugin written in Bash for fuzzy session management with fzf.
 
 ## Build/Test/Lint Commands
 - **Build (Nix):** `nix build`
 - **Install:** Use TPM (Tmux Plugin Manager) - add to tmux.conf and run prefix + I
 - **No test framework** - manual testing via tmux
-- **Lint (optional):** `shellcheck scripts/*.sh sessionx.tmux`
+- **Lint (optional):** `shellcheck scripts/*.sh sessionb.tmux`
 
 ## Code Style Guidelines
 - **Shebang:** Always use `#!/usr/bin/env bash`
@@ -20,6 +20,6 @@ tmux-sessionx is a tmux plugin written in Bash for fuzzy session management with
 - **Comments:** Sparse; only for non-obvious logic
 
 ## File Structure
-- `sessionx.tmux` - Main entry point, sources helper scripts
-- `scripts/` - Helper scripts (reload_sessions.sh, sessionx.sh, fzf-marks.sh, tmuxinator.sh)
+- `sessionb.tmux` - Main entry point, sources helper scripts
+- `scripts/` - Helper scripts (reload_sessions.sh, sessionb.sh, fzf-marks.sh, tmuxinator.sh)
 - `flake.nix` - Nix build configuration
