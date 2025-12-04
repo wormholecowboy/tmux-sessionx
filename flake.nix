@@ -1,5 +1,5 @@
 {
-  description = "A fuzzy Tmux session manager with preview capabilities, deleting, renaming and more!";
+            description = "A fuzzy Tmux session manager with deleting, renaming and more!";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -30,8 +30,6 @@
             substituteInPlace sessionx.tmux \
               --replace "\$CURRENT_DIR/scripts/sessionx.sh" "$out/share/tmux-plugins/sessionx/scripts/sessionx.sh"
             substituteInPlace scripts/sessionx.sh \
-              --replace "/tmux-sessionx/scripts/preview.sh" "$out/share/tmux-plugins/sessionx/scripts/preview.sh"
-            substituteInPlace scripts/sessionx.sh \
               --replace "/tmux-sessionx/scripts/reload_sessions.sh" "$out/share/tmux-plugins/sessionx/scripts/reload_sessions.sh"
           '';
 
@@ -39,16 +37,13 @@
             chmod +x $target/scripts/sessionx.sh
             wrapProgram $target/scripts/sessionx.sh \
               --prefix PATH : ${with pkgs; lib.makeBinPath [zoxide fzf gnugrep gnused coreutils]}
-            chmod +x $target/scripts/preview.sh
-            wrapProgram $target/scripts/preview.sh \
-              --prefix PATH : ${with pkgs; lib.makeBinPath [coreutils gnugrep gnused]}
             chmod +x $target/scripts/reload_sessions.sh
             wrapProgram $target/scripts/reload_sessions.sh \
               --prefix PATH : ${with pkgs; lib.makeBinPath [coreutils gnugrep gnused]}
           '';
 
           meta = with lib; {
-            description = "A fuzzy Tmux session manager with preview capabilities, deleting, renaming and more!";
+  description = "A fuzzy Tmux session manager with deleting, renaming and more!";
             homepage = "https://github.com/omerxx/tmux-sessionx";
             platforms = platforms.all;
           };

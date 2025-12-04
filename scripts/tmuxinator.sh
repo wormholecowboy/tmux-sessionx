@@ -17,5 +17,5 @@ is_tmuxinator_template() {
 load_tmuxinator_binding() {
 	local keybind="$(tmux_option_or_fallback "@sessionx-bind-tmuxinator-list" "ctrl-/")"
 
-	printf "$keybind:reload(tmuxinator list --newline | sed '1d')+change-preview(cat ~/.config/tmuxinator/{}.yml 2>/dev/null)"
+	printf "$keybind:reload(tmuxinator list --newline | sed '1d')"
 }

@@ -120,7 +120,7 @@ handle_input() {
 		INPUT="$(additional_input)\n$INPUT"
 	fi
 	bind_back=${extra_options["bind-back"]}
-	BACK="$bind_back:reload(echo -e \"${INPUT// /}\")+change-preview(${TMUX_PLUGIN_MANAGER_PATH%/}/tmux-sessionx/scripts/preview.sh {1})"
+	BACK="$bind_back:reload(echo -e \"${INPUT// /}\")"
 }
 
 run_plugin() {
